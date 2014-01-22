@@ -71,35 +71,10 @@
 						</goals>
 						<configuration>
 							<target>
-								<ant antfile="../gatherRepositories/deb.ant">
-									<property name="version" value="${unqualifiedVersion}"/>
-								</ant>
-								<ant antfile="../gatherRepositories/yum.ant">
+								<ant antfile="../aggregateRepositories/build.ant" dir="../aggregateRepositories">
 									<property name="version" value="${unqualifiedVersion}"/>
 								</ant>
 							</target>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<artifactId>exec-maven-plugin</artifactId>
-				<groupId>org.codehaus.mojo</groupId>
-				<executions>
-					<execution>
-						<id>p2index</id>
-						<phase>verify</phase>
-						<goals>
-							<goal>exec</goal>
-						</goals>
-						<configuration>
-							<environmentVariables>
-								<BASE_DIR>${download.root}</BASE_DIR>
-								<VERSION>${unqualifiedVersion}</VERSION>
-								<BUILD_TYPE>${buildType}</BUILD_TYPE>
-								<BUILD_TYPE_LONG>${buildTypeLong}</BUILD_TYPE_LONG>
-							</environmentVariables>
-							<executable>${basedir}/../cleanup/p2index</executable>
 						</configuration>
 					</execution>
 				</executions>

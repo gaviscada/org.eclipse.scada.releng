@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+Copyright (c) 2013, 2014 IBH SYSTEMS GmbH and others.
+All rights reserved. This program and the accompanying materials
+are made available under the terms of the Eclipse Public License v1.0
+which accompanies this distribution, and is available at
+http://www.eclipse.org/legal/epl-v10.html
+
+Contributors:
+    IBH SYSTEMS GmbH - initial implementation
+-->
+
+<!-- ====================================================================== 
+	 Aggregate repositories
+     ====================================================================== -->
+<project name="aggregate" default="default">
+    <description>
+        Aggregate P2 repositories
+    </description>
+
+    <tstamp>
+        <format property="buildTimestamp" pattern="yyyyMMddHHmm"/>
+    </tstamp>
+    
+    <property file="default.properties"/>
+
+    <property name="download.dir" location="${download.root}/downloads/org.eclipse.scada/drops/${version}/${buildType}${buildTimestamp}/p2"/>
+    
+    <!-- ================================= 
+          target: default
+         ================================= -->
+    <target name="default" depends="director,clean.publish,provision.b3,prepare.b3,run.b3,publish.b3">
+    </target>
+
+    <!-- ================================= 
+          target: clean
+         ================================= -->
+    <target name="clean">
+        <delete dir="temp" />
+    </target>
+
+    <!-- ================================= 
+          target: fetch
+         ================================= -->
+    <target name="director">
+        <mkdir dir="temp/download" />
+
+        <get dest="temp/download" src="http://download.eclipse.org/tools/buckminster/products/director_latest.zip" usetimestamp="true" />
+
+        <mkdir dir="temp/director" />
+        <unzip dest="temp/director" src="temp/download/director_latest.zip" />
+    </target>
+
+	<!-- ================================= 
+          target: clean.publish
+         ================================= -->
+    <target name="clean.publish">
+        <delete dir="${download.dir}"/>
+    </target>
+    
+    <!-- ================================= 
+          target: provision.b3
+         ================================= -->
+    <target name="provision.b3">
+        <mkdir dir="temp/b3" />
+        <java classname="org.eclipse.equinox.launcher.Main" fork="true" dir="temp/director/director">
+            <classpath>
+                <fileset dir="temp/director/director/plugins/">
+                    <include name="org.eclipse.equinox.launcher_*.jar" />
+                </fileset>
+            </classpath>
+            <arg line="-r http://download.eclipse.org/modeling/emft/b3/headless-4.3" />
+            <arg line="-p p3" />
+            <arg line="-i org.eclipse.b3.cli.product" />
+            <arg line="-i org.eclipse.b3.aggregator.engine.feature.feature.group" />
+            <arg value="-d" />
+            <arg file="temp/b3" />
+        </java>
+    </target>
+
+    <!-- ================================= 
+          target: prepare.b3
+         ================================= -->
+    <target name="prepare.b3">
+        <delete file="EclipseSCADA.build.b3aggr"/>
+        <delete file="temp/EclipseSCADA.b3aggr"/>
+
+        <!-- first gather p2 index information an replace in b3aggr file -->
+        <!-- this will create EclipseSCADA.build.b3aggr -->
+        
+        <exec executable="${basedir}/p2index" failifexecutionfails="true" failonerror="true">
+            <arg value="-v"/>
+            <env key="BUILD_TYPE_LONG" value="${buildTypeLong}"/>
+            <env key="BUILD_TYPE" value="${buildType}"/>
+            <env key="VERSION" value="${version}"/>
+            <env key="BASE_DIR" value="${download.root}"/>
+    	</exec>
+    
+        <copy file="EclipseSCADA.build.b3aggr" todir="temp"/>
+    </target>
+
+    <!-- ================================= 
+          target: run.b3
+         ================================= -->
+    <target name="run.b3">
+        <delete dir="temp/build" />
+
+        <mkdir dir="temp/build" />
+        <copy file="EclipseSCADA.build.b3aggr" tofile="temp/EclipseSCADA.b3aggr">
+            <filterset>
+                <filter token="buildTypeLong" value="${buildTypeLong}" />
+                <filter token="buildType" value="${buildType}" />
+                <filter token="version" value="${version}" />
+            </filterset>
+        </copy>
+        
+        <java classname="org.eclipse.equinox.launcher.Main"
+            fork="true"
+            >
+            <classpath>
+                <fileset dir="temp/b3/plugins/">
+                    <include name="org.eclipse.equinox.launcher_*.jar" />
+                </fileset>
+            </classpath>
+            <arg value="aggregate" />
+            <arg value="--buildModel" />
+            <arg file="temp/EclipseSCADA.b3aggr" />
+            <arg value="--buildRoot" />
+            <arg file="temp/build" />
+        </java>
+    </target>
+    
+    <!-- ================================= 
+          target: publish.b3
+         ================================= -->
+    <target name="publish.b3">
+        <mkdir dir="${download.dir}"/>
+        <copy todir="${download.dir}">
+            <fileset dir="temp/build/final">
+        	</fileset>
+    	</copy>
+        
+        <!-- add index.html -->
+        <copy todir="${download.dir}">
+   		    <fileset dir="p2">
+   		    </fileset>
+   			<filterset>
+   					<filter token="buildTypeLong" value="${buildTypeLong}" />
+   					<filter token="buildType" value="${buildType}" />
+   					<filter token="buildTimestamp" value="${buildTimestamp}" />
+   					<filter token="version" value="${version}" />
+			</filterset>
+   		</copy>
+    </target>
+
+</project>
