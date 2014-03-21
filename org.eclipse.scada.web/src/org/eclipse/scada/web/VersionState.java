@@ -18,119 +18,119 @@ import org.eclipse.emf.common.util.Enumerator;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the literals of the enumeration '<em><b>Release Type</b></em>',
+ * A representation of the literals of the enumeration '<em><b>Version State</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
- * @see org.eclipse.scada.web.WebPackage#getReleaseType()
+ * @see org.eclipse.scada.web.WebPackage#getVersionState()
  * @model
  * @generated
  */
-public enum ReleaseType implements Enumerator {
+public enum VersionState implements Enumerator {
 	/**
-	 * The '<em><b>Nightly</b></em>' literal object.
+	 * The '<em><b>IN DEVELOPMENT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NIGHTLY_VALUE
+	 * @see #IN_DEVELOPMENT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NIGHTLY(0, "nightly", "nightly"),
+	IN_DEVELOPMENT(0, "IN_DEVELOPMENT", "IN_DEVELOPMENT"),
 
 	/**
-	 * The '<em><b>Milestone</b></em>' literal object.
+	 * The '<em><b>RELEASED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #MILESTONE_VALUE
+	 * @see #RELEASED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	MILESTONE(1, "milestone", "milestone"),
+	RELEASED(1, "RELEASED", "RELEASED"),
 
 	/**
-	 * The '<em><b>Release</b></em>' literal object.
+	 * The '<em><b>PLANNED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #RELEASE_VALUE
+	 * @see #PLANNED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	RELEASE(2, "release", "release");
+	PLANNED(3, "PLANNED", "PLANNED");
 
 	/**
-	 * The '<em><b>Nightly</b></em>' literal value.
+	 * The '<em><b>IN DEVELOPMENT</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Nightly</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>IN DEVELOPMENT</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NIGHTLY
-	 * @model name="nightly"
+	 * @see #IN_DEVELOPMENT
+	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NIGHTLY_VALUE = 0;
+	public static final int IN_DEVELOPMENT_VALUE = 0;
 
 	/**
-	 * The '<em><b>Milestone</b></em>' literal value.
+	 * The '<em><b>RELEASED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Milestone</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>RELEASED</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #MILESTONE
-	 * @model name="milestone"
+	 * @see #RELEASED
+	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MILESTONE_VALUE = 1;
+	public static final int RELEASED_VALUE = 1;
 
 	/**
-	 * The '<em><b>Release</b></em>' literal value.
+	 * The '<em><b>PLANNED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Release</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>PLANNED</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #RELEASE
-	 * @model name="release"
+	 * @see #PLANNED
+	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int RELEASE_VALUE = 2;
+	public static final int PLANNED_VALUE = 3;
 
 	/**
-	 * An array of all the '<em><b>Release Type</b></em>' enumerators.
+	 * An array of all the '<em><b>Version State</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final ReleaseType[] VALUES_ARRAY =
-		new ReleaseType[] {
-			NIGHTLY,
-			MILESTONE,
-			RELEASE,
+	private static final VersionState[] VALUES_ARRAY =
+		new VersionState[] {
+			IN_DEVELOPMENT,
+			RELEASED,
+			PLANNED,
 		};
 
 	/**
-	 * A public read-only list of all the '<em><b>Release Type</b></em>' enumerators.
+	 * A public read-only list of all the '<em><b>Version State</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<ReleaseType> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<VersionState> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>Release Type</b></em>' literal with the specified literal value.
+	 * Returns the '<em><b>Version State</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static ReleaseType get(String literal) {
+	public static VersionState get(String literal) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			ReleaseType result = VALUES_ARRAY[i];
+			VersionState result = VALUES_ARRAY[i];
 			if (result.toString().equals(literal)) {
 				return result;
 			}
@@ -139,14 +139,14 @@ public enum ReleaseType implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Release Type</b></em>' literal with the specified name.
+	 * Returns the '<em><b>Version State</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static ReleaseType getByName(String name) {
+	public static VersionState getByName(String name) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			ReleaseType result = VALUES_ARRAY[i];
+			VersionState result = VALUES_ARRAY[i];
 			if (result.getName().equals(name)) {
 				return result;
 			}
@@ -155,16 +155,16 @@ public enum ReleaseType implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Release Type</b></em>' literal with the specified integer value.
+	 * Returns the '<em><b>Version State</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static ReleaseType get(int value) {
+	public static VersionState get(int value) {
 		switch (value) {
-			case NIGHTLY_VALUE: return NIGHTLY;
-			case MILESTONE_VALUE: return MILESTONE;
-			case RELEASE_VALUE: return RELEASE;
+			case IN_DEVELOPMENT_VALUE: return IN_DEVELOPMENT;
+			case RELEASED_VALUE: return RELEASED;
+			case PLANNED_VALUE: return PLANNED;
 		}
 		return null;
 	}
@@ -196,7 +196,7 @@ public enum ReleaseType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private ReleaseType(int value, String name, String literal) {
+	private VersionState(int value, String name, String literal) {
 		this.value = value;
 		this.name = name;
 		this.literal = literal;
@@ -240,4 +240,4 @@ public enum ReleaseType implements Enumerator {
 		return literal;
 	}
 	
-} //ReleaseType
+} //VersionState

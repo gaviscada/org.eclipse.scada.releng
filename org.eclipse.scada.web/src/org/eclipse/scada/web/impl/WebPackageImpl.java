@@ -1,5 +1,13 @@
-/**
- */
+/*******************************************************************************
+ * Copyright (c) 2014 IBH SYSTEMS GmbH and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     IBH SYSTEMS GmbH - initial API and implementation
+ *******************************************************************************/
 package org.eclipse.scada.web.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -30,6 +38,7 @@ import org.eclipse.scada.web.Site;
 import org.eclipse.scada.web.SocialBar;
 import org.eclipse.scada.web.SocialInformation;
 import org.eclipse.scada.web.Version;
+import org.eclipse.scada.web.VersionState;
 import org.eclipse.scada.web.WebFactory;
 import org.eclipse.scada.web.WebPackage;
 
@@ -179,6 +188,13 @@ public class WebPackageImpl extends EPackageImpl implements WebPackage {
 	 * @generated
 	 */
 	private EEnum releaseTypeEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum versionStateEEnum = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -685,6 +701,15 @@ public class WebPackageImpl extends EPackageImpl implements WebPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getVersion_State() {
+		return (EAttribute)versionEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getGallery() {
 		return galleryEClass;
 	}
@@ -829,6 +854,15 @@ public class WebPackageImpl extends EPackageImpl implements WebPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EEnum getVersionState() {
+		return versionStateEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EDataType getURL() {
 		return urlEDataType;
 	}
@@ -922,6 +956,7 @@ public class WebPackageImpl extends EPackageImpl implements WebPackage {
 		versionEClass = createEClass(VERSION);
 		createEReference(versionEClass, VERSION__RELEASES);
 		createEAttribute(versionEClass, VERSION__NAME);
+		createEAttribute(versionEClass, VERSION__STATE);
 
 		galleryEClass = createEClass(GALLERY);
 		createEReference(galleryEClass, GALLERY__IMAGES);
@@ -945,6 +980,7 @@ public class WebPackageImpl extends EPackageImpl implements WebPackage {
 
 		// Create enums
 		releaseTypeEEnum = createEEnum(RELEASE_TYPE);
+		versionStateEEnum = createEEnum(VERSION_STATE);
 
 		// Create data types
 		urlEDataType = createEDataType(URL);
@@ -1051,6 +1087,7 @@ public class WebPackageImpl extends EPackageImpl implements WebPackage {
 		initEClass(versionEClass, Version.class, "Version", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getVersion_Releases(), this.getRelease(), this.getRelease_Version(), "releases", null, 0, -1, Version.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getVersion_Name(), ecorePackage.getEString(), "name", null, 1, 1, Version.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getVersion_State(), this.getVersionState(), "state", "PLANNED", 1, 1, Version.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(galleryEClass, Gallery.class, "Gallery", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getGallery_Images(), this.getImage(), null, "images", null, 0, -1, Gallery.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1077,6 +1114,11 @@ public class WebPackageImpl extends EPackageImpl implements WebPackage {
 		addEEnumLiteral(releaseTypeEEnum, ReleaseType.NIGHTLY);
 		addEEnumLiteral(releaseTypeEEnum, ReleaseType.MILESTONE);
 		addEEnumLiteral(releaseTypeEEnum, ReleaseType.RELEASE);
+
+		initEEnum(versionStateEEnum, VersionState.class, "VersionState");
+		addEEnumLiteral(versionStateEEnum, VersionState.IN_DEVELOPMENT);
+		addEEnumLiteral(versionStateEEnum, VersionState.RELEASED);
+		addEEnumLiteral(versionStateEEnum, VersionState.PLANNED);
 
 		// Initialize data types
 		initEDataType(urlEDataType, java.net.URL.class, "URL", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);

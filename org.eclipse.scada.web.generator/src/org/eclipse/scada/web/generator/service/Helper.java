@@ -1,9 +1,20 @@
+/*******************************************************************************
+ * Copyright (c) 2014 IBH SYSTEMS GmbH and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     IBH SYSTEMS GmbH - initial API and implementation
+ *******************************************************************************/
 package org.eclipse.scada.web.generator.service;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.security.MessageDigest;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import org.eclipse.emf.common.util.URI;
@@ -16,13 +27,16 @@ public class Helper {
 		return new SimpleDateFormat(format).format(date);
 	}
 
-	public String parmaEncode(String title) throws UnsupportedEncodingException {
+	public String permaEncode(String title) throws UnsupportedEncodingException {
 		title = title.toLowerCase();
-		title = title.replaceAll("[^a-z]", "_");
+		title = title.replaceAll("[^a-zA-Z0-9]", "_");
 		return title;
 	}
 
 	public String encodeHtml(String string) {
+		if ( string == null )
+			return null;
+		
 		// FIXME: we could do better than that with an additional library
 		string = string.replace("&", "&amp;");
 		string = string.replace("<", "&lt;");
@@ -58,4 +72,28 @@ public class Helper {
 	}
 	
 	// FIXME: make method for making a URL relative
+	
+	public Integer getIndex ( Date date ) 
+	{
+		Calendar c = Calendar.getInstance();
+		c.setTime(date);
+		int result = c.get(Calendar.YEAR) * 100 + (c.get(Calendar.MONTH)+1);
+		return result;
+	}
+	
+	public String makeArchiveLabel ( Integer value  )
+	{
+		int month = ( value % 100 ) -1 ;
+		int year = value / 100;
+		Calendar c = Calendar.getInstance();
+		c.set(year, month, 1);
+		return new SimpleDateFormat("MMMM yyyy").format(c.getTime());
+	}
+	
+	public String archiveLink ( Integer value  )
+	{
+		int month = ( value % 100 ) ;
+		int year = value / 100;
+		return String.format ("%04d/%02d", year, month);
+	}
 }

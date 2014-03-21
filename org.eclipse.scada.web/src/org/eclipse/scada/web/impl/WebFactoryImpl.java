@@ -1,5 +1,13 @@
-/**
- */
+/*******************************************************************************
+ * Copyright (c) 2014 IBH SYSTEMS GmbH and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     IBH SYSTEMS GmbH - initial API and implementation
+ *******************************************************************************/
 package org.eclipse.scada.web.impl;
 
 import java.net.URL;
@@ -89,6 +97,8 @@ public class WebFactoryImpl extends EFactoryImpl implements WebFactory {
 		switch (eDataType.getClassifierID()) {
 			case WebPackage.RELEASE_TYPE:
 				return createReleaseTypeFromString(eDataType, initialValue);
+			case WebPackage.VERSION_STATE:
+				return createVersionStateFromString(eDataType, initialValue);
 			case WebPackage.URL:
 				return createURLFromString(eDataType, initialValue);
 			default:
@@ -106,6 +116,8 @@ public class WebFactoryImpl extends EFactoryImpl implements WebFactory {
 		switch (eDataType.getClassifierID()) {
 			case WebPackage.RELEASE_TYPE:
 				return convertReleaseTypeToString(eDataType, instanceValue);
+			case WebPackage.VERSION_STATE:
+				return convertVersionStateToString(eDataType, instanceValue);
 			case WebPackage.URL:
 				return convertURLToString(eDataType, instanceValue);
 			default:
@@ -290,6 +302,26 @@ public class WebFactoryImpl extends EFactoryImpl implements WebFactory {
 	 * @generated
 	 */
 	public String convertReleaseTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public VersionState createVersionStateFromString(EDataType eDataType, String initialValue) {
+		VersionState result = VersionState.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertVersionStateToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
