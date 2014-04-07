@@ -13,6 +13,8 @@
     <property name="download.base.dir" location="${download.root}/downloads/org.eclipse.scada/drops/${version}/${buildType}${buildTimestamp}" />
     <property name="download.deb.dir" location="${download.base.dir}/repos/deb" />
     <property name="download.apt.dir" location="${download.base.dir}/repos/apt" />
+    
+    <property name="maven.exec" value="mvn"/>
 
     <!-- ================================= 
           target: default
@@ -53,8 +55,16 @@
     <!-- ================================= 
           target: build
          ================================= -->
-    <target name="build">
-        <!-- TODO: build the apt repository -->
+    <target name="build" unless="skip.deb.build">
+        <exec executable="${maven.exec}" dir="apt" failifexecutionfails="true" failonerror="true">
+            <arg value="clean"/>
+            <arg value="package"/>
+            <arg value="-DsourceDirectory=${download.deb.dir}"/>
+            <arg value="-DoutputDirectory=${download.apt.dir}"/>
+        </exec>
+        
+        <!-- we delete the plain debian result here to save space -->
+        <delete dir="${download.deb.dir}"/>
     </target>
 
     <target name="echo">
