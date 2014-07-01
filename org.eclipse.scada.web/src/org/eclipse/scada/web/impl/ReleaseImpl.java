@@ -39,6 +39,8 @@ import org.eclipse.scada.web.WebPackage;
  *   <li>{@link org.eclipse.scada.web.impl.ReleaseImpl#getReleaseNotesLink <em>Release Notes Link</em>}</li>
  *   <li>{@link org.eclipse.scada.web.impl.ReleaseImpl#getVersion <em>Version</em>}</li>
  *   <li>{@link org.eclipse.scada.web.impl.ReleaseImpl#getDate <em>Date</em>}</li>
+ *   <li>{@link org.eclipse.scada.web.impl.ReleaseImpl#getUnqualifiedName <em>Unqualified Name</em>}</li>
+ *   <li>{@link org.eclipse.scada.web.impl.ReleaseImpl#getAlternateMsiName <em>Alternate Msi Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -144,6 +146,46 @@ public class ReleaseImpl extends MinimalEObjectImpl.Container implements Release
 	 * @ordered
 	 */
 	protected Date date = DATE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getUnqualifiedName() <em>Unqualified Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getUnqualifiedName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String UNQUALIFIED_NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getUnqualifiedName() <em>Unqualified Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getUnqualifiedName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String unqualifiedName = UNQUALIFIED_NAME_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getAlternateMsiName() <em>Alternate Msi Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAlternateMsiName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String ALTERNATE_MSI_NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getAlternateMsiName() <em>Alternate Msi Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAlternateMsiName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String alternateMsiName = ALTERNATE_MSI_NAME_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -315,6 +357,48 @@ public class ReleaseImpl extends MinimalEObjectImpl.Container implements Release
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getUnqualifiedName() {
+		return unqualifiedName;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setUnqualifiedName(String newUnqualifiedName) {
+		String oldUnqualifiedName = unqualifiedName;
+		unqualifiedName = newUnqualifiedName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, WebPackage.RELEASE__UNQUALIFIED_NAME, oldUnqualifiedName, unqualifiedName));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getAlternateMsiName() {
+		return alternateMsiName;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setAlternateMsiName(String newAlternateMsiName) {
+		String oldAlternateMsiName = alternateMsiName;
+		alternateMsiName = newAlternateMsiName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, WebPackage.RELEASE__ALTERNATE_MSI_NAME, oldAlternateMsiName, alternateMsiName));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -374,6 +458,10 @@ public class ReleaseImpl extends MinimalEObjectImpl.Container implements Release
 				return getVersion();
 			case WebPackage.RELEASE__DATE:
 				return getDate();
+			case WebPackage.RELEASE__UNQUALIFIED_NAME:
+				return getUnqualifiedName();
+			case WebPackage.RELEASE__ALTERNATE_MSI_NAME:
+				return getAlternateMsiName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -403,6 +491,12 @@ public class ReleaseImpl extends MinimalEObjectImpl.Container implements Release
 				return;
 			case WebPackage.RELEASE__DATE:
 				setDate((Date)newValue);
+				return;
+			case WebPackage.RELEASE__UNQUALIFIED_NAME:
+				setUnqualifiedName((String)newValue);
+				return;
+			case WebPackage.RELEASE__ALTERNATE_MSI_NAME:
+				setAlternateMsiName((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -434,6 +528,12 @@ public class ReleaseImpl extends MinimalEObjectImpl.Container implements Release
 			case WebPackage.RELEASE__DATE:
 				setDate(DATE_EDEFAULT);
 				return;
+			case WebPackage.RELEASE__UNQUALIFIED_NAME:
+				setUnqualifiedName(UNQUALIFIED_NAME_EDEFAULT);
+				return;
+			case WebPackage.RELEASE__ALTERNATE_MSI_NAME:
+				setAlternateMsiName(ALTERNATE_MSI_NAME_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -458,6 +558,10 @@ public class ReleaseImpl extends MinimalEObjectImpl.Container implements Release
 				return getVersion() != null;
 			case WebPackage.RELEASE__DATE:
 				return DATE_EDEFAULT == null ? date != null : !DATE_EDEFAULT.equals(date);
+			case WebPackage.RELEASE__UNQUALIFIED_NAME:
+				return UNQUALIFIED_NAME_EDEFAULT == null ? unqualifiedName != null : !UNQUALIFIED_NAME_EDEFAULT.equals(unqualifiedName);
+			case WebPackage.RELEASE__ALTERNATE_MSI_NAME:
+				return ALTERNATE_MSI_NAME_EDEFAULT == null ? alternateMsiName != null : !ALTERNATE_MSI_NAME_EDEFAULT.equals(alternateMsiName);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -482,6 +586,10 @@ public class ReleaseImpl extends MinimalEObjectImpl.Container implements Release
 		result.append(releaseNotesLink);
 		result.append(", date: ");
 		result.append(date);
+		result.append(", unqualifiedName: ");
+		result.append(unqualifiedName);
+		result.append(", alternateMsiName: ");
+		result.append(alternateMsiName);
 		result.append(')');
 		return result.toString();
 	}

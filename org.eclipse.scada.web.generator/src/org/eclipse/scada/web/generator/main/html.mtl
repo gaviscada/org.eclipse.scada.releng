@@ -1,7 +1,6 @@
 [comment encoding = UTF-8 /]
 [module html('http://eclipse.org/eclipsescada', 'http://www.eclipse.org/emf/2002/Ecore')]
 
-[import org::eclipse::scada::web::generator::main::news /]
 [import org::eclipse::scada::web::generator::main::social /]
 [import org::eclipse::scada::web::generator::main::common /]
 
@@ -116,12 +115,16 @@ var track = function(url, category, action) {
 	<div id="gsearch">
 		<gcse:search></gcse:search>
 	</div>
+<div id="sidebar-right-lower">
 	<div id="sidebar-social">
 [startSocialBar()/]
 [socialPlus('https://plus.google.com/115299777840108730794')/]
 [socialFacebook('https://www.facebook.com/eclipse.scada')/]
 [endSocialBar()/]
 	</div>
+    <div id="sidebar-releases">
+[sidebarReleases(site, fileName)/]
+    </div>
 	<div id="incubation">
 			<div class="header">Incubation</div>
 			<div align="center">
@@ -130,6 +133,7 @@ var track = function(url, category, action) {
 					src="[relative(fileName, 'images/egg-incubation.png' )/]" border="0" alt="Incubation" /></a>
 			</div>
 	</div>
+</div>
 </aside>
 
 <!-- google -->
@@ -173,11 +177,15 @@ var track = function(url, category, action) {
 </html>
 [/template]
 
-[query public toLabel(link : Link) : String =
-if ( link.label = null ) then
-	link.target
-else
-	link.label.encodeHtml()
-endif /]
-
+[template public sidebarReleases(site : Site, fileName : String)]
+<h3><a href="[relative(fileName, 'releases')/]">Recent Releases</a></h3>
+<dl>
+[for (version : Version | site.versions->reverse())]
+<dt>[version.state.asLabel()/]</dt>
+[for (release : Release | version.releases->first())]
+<dd>[release.name/]</dd>
+[/for]
+[/for]
+</dl>
+[/template]
 
