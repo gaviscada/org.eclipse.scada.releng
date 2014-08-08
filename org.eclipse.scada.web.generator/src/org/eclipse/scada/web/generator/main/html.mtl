@@ -28,6 +28,8 @@
 
 <title>[site.name.encodeHtml()/] – [title.encodeHtml()/]</title>
 
+<script type="text/javascript" src="[relative(fileName, 'js/default.js' )/]"></script>
+
 <link rel="stylesheet" type="text/css" href="[relative(fileName, 'style/default.css' )/]" />
 <link rel="alternate" type="application/rss+xml" title="[site.name.encodeHtml()/] Feed" href="[getProperty('site.base')/]/feed.xml" />
 
@@ -118,6 +120,7 @@ var track = function(url, category, action) {
 <div id="sidebar-right-lower">
 	<div id="sidebar-social">
 [startSocialBar()/]
+[socialRssFeed(fileName)/]
 [socialPlus('https://plus.google.com/115299777840108730794')/]
 [socialFacebook('https://www.facebook.com/eclipse.scada')/]
 [endSocialBar()/]
