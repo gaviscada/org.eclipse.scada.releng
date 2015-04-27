@@ -4,14 +4,20 @@ set -e
 
 . profile
 
-usage() { echo "Usage: $0 [-r]" 1>&2; exit 1; }
+usage() { echo "Usage: $0 [-rms]" 1>&2; exit 1; }
 
 TYPE=milestone
 
-while getopts ":r" o; do
+while getopts ":rms" o; do
    case "$o" in
       r)
          TYPE=release
+         ;;
+      m)
+         TYPE=maintenance
+         ;;
+      s)
+         TYPE=milestone
          ;;
       *)
          usage
