@@ -7,7 +7,7 @@
 	<artifactId>superParent</artifactId>
 	<version>0.2.1.RC2</version>
 	<packaging>pom</packaging>
-	
+
 	<organization>
 		<name>Eclipse SCADA Project</name>
 	</organization>
@@ -28,10 +28,10 @@
 	<properties>
 		<buildType>N</buildType>
 		<buildTypeLong>nightly</buildTypeLong>
-				
+
 		<release>0.2</release>
 		<eclipse.scada.version>${project.version}</eclipse.scada.version>
-				
+
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
 		<tycho-version>0.20.0</tycho-version>
@@ -44,7 +44,7 @@
 		<buildTimestamp>${maven.build.timestamp}</buildTimestamp>
 		<!-- the following property is used by the tycho JGit timestamp provider -->
 		<reactorBuildTimestampProperty>${maven.build.timestamp}</reactorBuildTimestampProperty>
-		
+
 		<external.p2.wrapper.url>file:${basedir}/../../org.eclipse.scada.external/org.eclipse.scada.external-repo/repo</external.p2.wrapper.url>
 	</properties>
 
@@ -61,7 +61,7 @@
 			</snapshots>
 		</pluginRepository>
 	</pluginRepositories>
-	
+
 	<build>
 		<plugins>
 			<plugin>
@@ -271,7 +271,7 @@
 				</repository>
 			</repositories>
 		</profile>
-		
+
 		<profile>
 			<id>maintenance</id>
 			<properties>
@@ -312,7 +312,13 @@
 			<pluginRepositories>
 				<pluginRepository>
 					<id>eclipse.cbi</id>
-					<url>https://repo.eclipse.org/content/repositories/cbi-releases/</url>
+					<url>https://repo.eclipse.org/content/repositories/cbi/</url>
+					<releases>
+						<enabled>true</enabled>
+					</releases>
+					<snapshots>
+						<enabled>true</enabled>
+					</snapshots>
 				</pluginRepository>
 			</pluginRepositories>
 
