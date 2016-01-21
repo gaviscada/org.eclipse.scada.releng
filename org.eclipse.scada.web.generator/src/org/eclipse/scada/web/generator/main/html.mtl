@@ -14,10 +14,10 @@
 <meta name="viewport" content="width=device-width" />
 
 <meta property="og:title" content="[title.encodeHtml()/]"/>
-<meta property="og:image" content="[toAbsolute('images/icon.png')/]"/>
+<meta property="og:image" content="[toAbsolute('images/og_icon_v1.png')/]"/>
 
 <meta itemprop="name" content="[title.encodeHtml()/]">
-<meta itemprop="image" content="[toAbsolute('images/icon.png')/]">
+<meta itemprop="image" content="[toAbsolute('images/og_icon_v1.png')/]">
 
 <link rel="shortcut icon" href="[relative(fileName,'images/icon.ico')/]" />
 
@@ -107,7 +107,7 @@ var track = function(url, category, action) {
 
 </div>
 
-<aside id="logo">
+<aside id="logo" style="z-index: -1000;">
 	<img width="400" height="136" src="[relative(fileName, 'images/logo.png' )/]"/>
 </aside>
 
