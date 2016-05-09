@@ -57,7 +57,7 @@ var track = function(url, category, action) {
 <body>
 
 <nav id="navbar">
-<h3>Eclipse NeoSCADA</h3>
+<h3>Eclipse NeoSCADA™</h3>
 
 	<ul class="header">
 [for (page : Page | site.pages)]
@@ -103,6 +103,9 @@ var track = function(url, category, action) {
 [/for]
 		</ul>
 	</div>
+    <div style="text-align: right;">
+		Copyright © [currentYear()/], IBH SYSTEMS GmbH and others. All rights reserved.
+	</div>
 </footer>
 
 </div>
@@ -115,6 +118,9 @@ var track = function(url, category, action) {
 	<div id="gsearch">
 		<gcse:search></gcse:search>
 	</div>
+    <div id="eclipse-foundation" style="text-align: right;">
+        <a href="https://eclipse.org" target="_blank"><img width="200" height="47" src="[relative(fileName, 'images/Eclipse2014_RGB_cropped.svg' )/]" /></a>
+    </div>
 <div id="sidebar-right-lower">
 	<div id="sidebar-social">
 [startSocialBar()/]
